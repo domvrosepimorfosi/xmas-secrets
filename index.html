@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprising Secrets about Christmas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@400;700&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Main Container for Steps */
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .step {
+            display: none; /* Hidden by default */
+            width: 100%;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- Header / Logo Styles --- */
+        .logo-frame {
+            border: 5px solid #FFD700;
+            border-radius: 50%;
+            background: transparent;
+            animation: goldenFlash 2s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px; /* 20% smaller than 80px */
+            height: 64px;
+            overflow: hidden;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes goldenFlash {
+            0% { border-color: #FFD700; box-shadow: 0 0 10px #FFD700, inset 0 0 10px #FFD700; transform: scale(1); }
+            100% { border-color: #FFF8DC; box-shadow: 0 0 25px #FFD700, inset 0 0 25px #FFD700; transform: scale(1.05); }
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3em;
+            margin: 0 0 0 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #FFD700;
+            line-height: 1;
+            text-align: left;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        /* --- Step 1: Cover Page Specifics --- */
+        #step-cover {
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1544967082-d9d3f426632a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-color: #8b0000;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .cover-image {
+            max-height: 40vh;
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 4px solid white;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .cover-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- Lightbox Styles (New Fix) --- */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Step 2: Choice Page Specifics --- */
+        #step-choice {
+            justify-content: center;
+            background-color: #2c3e50; 
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: white;
+            text-align: center;
+        }
+
+        .choice-card {
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* --- Step 2.5: Listening Page Specifics --- */
+        #step-listening {
+            justify-content: center;
+            background-color: #8e44ad;
+            color: white;
+            text-align: center;
+        }
+
+        .listening-card {
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .audio-control-container {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .audio-player-custom {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* --- Step 3: Reading (Slider) Specifics --- */
+        #step-reading {
+            justify-content: flex-start;
+        }
+
+        .slider-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: white;
+            border-top: 8px solid #D42426;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slides-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 40px;
+            text-align: justify;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .slide h2 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2.2em;
+            color: #D42426;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .slider-nav-btn {
+            background: #D42426;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background 0.2s;
+            position: absolute;
+            z-index: 10;
+        }
+        
+        .slider-nav-btn:hover { background: #b31b1d; transform: scale(1.1); }
+        .prev-slide { left: -25px; }
+        .next-slide { right: -25px; }
+        
+        #slider-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+            position: relative;
+            flex-grow: 1; /* Allow to take space */
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Step 4: Flashcards Specifics --- */
+        #step-flashcards {
+            overflow-y: auto; 
+            background-color: #2F5233;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233e6b42' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6-2.21 0-4-1.79-4-4-3.314 0-6-2.686-6-6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: white;
+            position: relative;
+        }
+
+        #activity-title {
+            text-align: center;
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3em;
+            margin-bottom: 20px;
+            margin-top: 40px; 
+            text-shadow: 2px 2px 0px #D42426;
+            color: white;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto 40px auto;
+        }
+
+        .card {
+            background-color: transparent;
+            width: 280px;
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        .card.flipped .card-inner { transform: rotateY(180deg); }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 1em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-back {
+            background: white;
+            color: #D42426;
+            transform: rotateY(180deg);
+            border: 4px solid #FFD700;
+        }
+        
+        .emoji-decor { font-size: 1.5em; margin-bottom: 5px; }
+
+        /* --- Buttons --- */
+        .step-nav-btn {
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-family: 'Mountains of Christmas', cursive;
+            background-color: #2F5233;
+            color: white;
+            border: 2px solid #FFD700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .step-nav-btn:hover {
+            background-color: #233e26;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-secondary { background-color: #D42426; }
+        .btn-secondary:hover { background-color: #a81c1e; }
+        
+        .btn-choice {
+            display: block;
+            width: 80%;
+            margin: 15px auto;
+            max-width: 400px;
+        }
+        
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .home-btn:hover { background: rgba(255,255,255,0.4); }
+
+        .footer {
+            margin-top: auto; padding: 15px; font-size: 1em;
+            color: white; text-shadow: 1px 1px 2px black;
+            font-family: 'Mountains of Christmas', cursive;
+            letter-spacing: 1px; text-align: center; width: 100%;
+        }
+        
+        #step-reading .footer { color: #333; text-shadow: none; }
+
+        @media (max-width: 768px) {
+            .logo-frame { width: 64px; height: 64px; }
+            h1 { font-size: 2em; }
+            .prev-slide { left: -10px; }
+            .next-slide { right: -10px; }
+            #slider-container { width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <div id="step-cover" class="step active">
+        <div class="step-header">
+            <div class="logo-frame">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h1>Surprising Secrets about Christmas</h1>
+        </div>
+        
+        <img src="image.png" alt="Christmas Scene" class="cover-image" onclick="openLightbox()">
+        
+        <button class="step-nav-btn" onclick="showStep('step-choice')">Start 🎅</button>
+
+        <div class="footer">
+            🎄✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️🎅
+        </div>
+    </div>
+
+    <div id="step-choice" class="step">
+        <div class="step-header">
+            <div class="logo-frame">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Choose Your Activity</h1>
+        </div>
+
+        <div class="choice-card">
+            <h2>How would you like to learn?</h2>
+            <p style="font-size: 1.2em;">Select a difficulty level:</p>
+            
+            <button class="step-nav-btn btn-choice" onclick="showStep('step-listening')">🎧 Listening Activity (Difficult)</button>
+            <button class="step-nav-btn btn-choice btn-secondary" onclick="showStep('step-reading')">📖 Reading Activity (Easier)</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+             <button class="home-btn" style="position: relative; top: auto; left: auto;" onclick="showStep('step-cover')">Back to Cover</button>
+        </div>
+
+        <div class="footer">
+            🎄✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️🎅
+        </div>
+    </div>
+
+    <div id="step-listening" class="step">
+        <div class="step-header">
+            <div class="logo-frame">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Listening Challenge</h1>
+        </div>
+
+        <div class="listening-card">
+            <img src="image.png" alt="Activity Cover" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            
+            <div class="audio-control-container">
+                <p><strong>Listen closely to the Christmas facts!</strong></p>
+                <audio controls class="audio-player-custom">
+                    <source src="audio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            
+            <button class="step-nav-btn" onclick="showStep('step-flashcards')">Finish Listening & Go to Activity 🎁</button>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+             <button class="step-nav-btn btn-secondary" onclick="showStep('step-choice')">Back</button>
+        </div>
+
+        <div class="footer">
+            🎄✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️🎅
+        </div>
+    </div>
+
+    <div id="step-reading" class="step">
+        <div class="step-header" style="justify-content: center;">
+            <div class="logo-frame">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h1 style="font-size: 2.5em; color: #D42426; text-shadow: none;">12 Facts of Christmas</h1>
+        </div>
+
+        <div id="slider-container">
+            <button class="slider-nav-btn prev-slide" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="slider-wrapper">
+                <div class="slides-track" id="track">
+
+                    <div class="slide">
+                        <h2>1. The Christmas Tree Tradition</h2>
+                        <p>Christmas trees were not always popular in the UK or the USA. The tradition actually started in <strong>Germany</strong> in the 16th century. It became famous in the English-speaking world in 1848, when <strong>Prince Albert</strong>, the husband of Queen Victoria, put up a tree in Windsor Castle. A drawing of the Royal Family standing around the tree was published in a newspaper, and suddenly, everyone wanted one!</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>2. "Jingle Bells" in Space</h2>
+                        <p>"Jingle Bells" holds a special record. On December 16, 1965, it became the <strong>first song ever played in space</strong>. Two astronauts on the <em>Gemini 6</em> spaceship played the song on a small harmonica and bells. Also, the song was originally written for American Thanksgiving, not Christmas!</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>3. Rudolph Was a Marketing Trick</h2>
+                        <p>Rudolph the Red-Nosed Reindeer is not part of the original folklore. He was created in 1939 by a copywriter for a department store called Montgomery Ward. They created the character for a free coloring book to give to children as a <strong>promotion</strong>.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>4. The Meaning of "Xmas"</h2>
+                        <p>Writing "Xmas" is not lazy or disrespectful. In the <strong>Greek language</strong>, the letter "X" (Chi) is the first letter of the name "Christ." Using "X" as an <strong>abbreviation</strong> for Christ is a religious tradition that has been used by the church for hundreds of years.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>5. KFC in Japan</h2>
+                        <p>In the UK and USA, people usually eat turkey. But in Japan, the most popular Christmas dinner is <strong>Fried Chicken</strong>. In 1974, KFC started a marketing campaign called "Kentucky for Christmas." Today, millions of Japanese families order fried chicken for their holiday meal weeks in advance.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>6. The Origin of Stockings</h2>
+                        <p>Why do we hang socks (stockings) by the fire? The legend says that <strong>St. Nicholas</strong> wanted to help a poor family. He dropped bags of gold down their chimney. The gold fell into the girls' stockings, which were hanging by the fire to dry.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>7. Spiders Bring Good Luck</h2>
+                        <p>In most places, people do not like spiders. However, in <strong>Ukraine</strong>, spider webs are traditional Christmas decorations! There is an old story about a poor widow who could not afford decorations. A spider spun a beautiful web on her tree, which turned into gold on Christmas morning. Today, putting a spider ornament on the tree is considered good luck.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>8. The First Christmas Card</h2>
+                        <p>Sending cards is a big part of the holiday. This tradition began in England in 1843. A civil servant named <strong>Sir Henry Cole</strong> was too busy to write individual letters to all his friends. He asked an artist to design a card with a festive image, printed a thousand copies, and sent them instead.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>9. A Gift from Norway</h2>
+                        <p>Every year, a huge Christmas tree is put up in Trafalgar Square in <strong>London</strong>. This tree is not British; it is a gift from the people of Oslo, Norway. They send the tree every year to say "thank you" to the UK for their help during World War II.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>10. Santa’s Red Suit</h2>
+                        <p>Many people believe that Santa Claus wears red because of <strong>Coca-Cola</strong>. This is partly true. Before the 1930s, Santa was often drawn wearing green, brown, or blue clothes. Coca-Cola hired an artist named Haddon Sundblom to draw Santa for their advertisements. He drew Santa in a bright red suit to match the brand's colors, and this image became the standard version we know today.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>11. "Silent Night" Was an Accident</h2>
+                        <p>"Silent Night" is the most recorded Christmas song in history. It was written in Austria in 1818. The story says that the church <strong>organ was broken</strong> (some say mice ate the insides!). Because they had no organ music for the Christmas service, the priest wrote a simple song that could be played on a <strong>guitar</strong>.</p>
+                    </div>
+    
+                    <div class="slide">
+                        <h2>12. Christmas Crackers</h2>
+                        <p>Christmas Crackers are a very British tradition. They were invented by a sweet-maker named <strong>Tom Smith</strong>. He saw "bon-bons" (sweets wrapped in paper) in France and wanted to sell them in London. Later, he added a small explosive "bang," a paper hat, and a bad joke to the package.</p>
+                    </div>
+    
+                </div>
+            </div>
+            <button class="slider-nav-btn next-slide" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        
+        <div style="text-align: center; min-height: 80px;">
+            <button class="step-nav-btn btn-secondary" onclick="showStep('step-choice')">Back</button>
+            <button id="goToActivityBtn" class="step-nav-btn" onclick="showStep('step-flashcards')" style="display: none;">Go to Activity 🎁</button>
+        </div>
+
+        <div class="footer">
+            🎄✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️🎅
+        </div>
+    </div>
+
+    <div id="step-flashcards" class="step">
+        <button class="home-btn" onclick="showStep('step-cover')">🏠 Home</button>
+        
+        <h2 id="activity-title">🎅 Trivia Flashcards 🎁</h2>
+        
+        <div class="cards-container">
+
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); color: #333;">
+                        <div class="emoji-decor">❄️</div>
+                        <p>In which country did the Christmas tree tradition start in the 16th century?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>The tradition started in Germany.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>Who popularised the Christmas tree in the English-speaking world in 1848?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Prince Albert, the husband of Queen Victoria.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>How did Prince Albert's Christmas tree at Windsor Castle become a famous tradition?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>A drawing of the Royal Family around the tree was published in a newspaper.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🎁</div>
+                        <p>What record does the song "Jingle Bells" hold in the context of space travel?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>It was the first song ever played in space.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🦌</div>
+                        <p>On December 16, 1965, astronauts on the _____ spaceship played "Jingle Bells".</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Gemini 6</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #ff0844 0%, #ffb199 100%); color: #fff;">
+                        <div class="emoji-decor">❄️</div>
+                        <p>For which American holiday was the song "Jingle Bells" originally written?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>It was originally written for American Thanksgiving.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>Rudolph the Red-Nosed Reindeer was created in 1939 by a copywriter for which department store?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>He was created for a department store called Montgomery Ward.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">⛄</div>
+                        <p>What was the original purpose for the creation of Rudolph the Red-Nosed Reindeer?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>He was a promotion for a free colouring book given to children.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🍪</div>
+                        <p>In the Greek language, the letter 'X' (Chi) is the first letter of what name?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Christ.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">⛄</div>
+                        <p>Using 'X' as an _____ for Christ is a religious tradition used by the church for hundreds of years.</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>abbreviation</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>In Japan, what is the most popular Christmas dinner?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>The most popular Christmas dinner is Fried Chicken.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>Which company's 1974 marketing campaign made fried chicken a Christmas tradition in Japan?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>KFC's "Kentucky for Christmas" campaign.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); color: #333;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>According to legend, who dropped bags of gold down a chimney, leading to the stocking tradition?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>St. Nicholas.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #ff0844 0%, #ffb199 100%); color: #fff;">
+                        <div class="emoji-decor">🎄</div>
+                        <p>In the legend of St. Nicholas, what happened to the bags of gold he dropped down the chimney?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>The gold fell into the girls' stockings, which were hanging by the fire to dry.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🎁</div>
+                        <p>In which country are spider webs considered traditional Christmas decorations?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>In Ukraine.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🎅</div>
+                        <p>According to Ukrainian folklore, what does placing a spider ornament on a Christmas tree bring?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>It is considered to bring good luck.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>The story of the Ukrainian Christmas spider tells of a poor widow whose spider web-covered tree turned into _____ on Christmas morning.</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>gold</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">⛄</div>
+                        <p>Who invented the first Christmas card in England in 1843?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>A civil servant named Sir Henry Cole.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🎅</div>
+                        <p>Why did Sir Henry Cole have the first Christmas card designed?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>He was too busy to write individual letters to all his friends.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); color: #333;">
+                        <div class="emoji-decor">🎁</div>
+                        <p>Which country sends a huge Christmas tree to London's Trafalgar Square every year?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Norway (specifically, the people of Oslo).</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #ff0844 0%, #ffb199 100%); color: #fff;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>Why does Norway send a Christmas tree to the UK every year?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>To say "thank you" for the UK's help during World War II.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🎄</div>
+                        <p>Which company's advertising campaign in the 1930s was highly influential in popularising Santa's red suit?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Coca-Cola.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); color: #333;">
+                        <div class="emoji-decor">⛄</div>
+                        <p>The artist _____ was hired by Coca-Cola to draw Santa in a red suit to match the brand's colours.</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Haddon Sundblom</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🦌</div>
+                        <p>"What colours, other than red, was Santa often depicted wearing before the 1930s?"</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>"He was often drawn wearing green, brown, or blue."</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #ff0844 0%, #ffb199 100%); color: #fff;">
+                        <div class="emoji-decor">🎅</div>
+                        <p>"The song ""Silent Night"" was written in which country in 1818?"</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>It was written in Austria.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🦌</div>
+                        <p>"Why was ""Silent Night"" originally written to be played on a guitar?"</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>The church organ was broken.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>"""Silent Night"" holds the record for being the most _____ Christmas song in history."</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>recorded</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🕯️</div>
+                        <p>"Christmas Crackers, invented by Tom Smith, are described as a very _____ tradition."</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>British</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #ff0844 0%, #ffb199 100%); color: #fff;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>"What was the profession of Tom Smith, the inventor of Christmas Crackers?"</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>He was a sweet-maker.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🦌</div>
+                        <p>What French confection inspired Tom Smith to create Christmas Crackers?</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>"He was inspired by ""bon-bons"" (sweets wrapped in paper)."</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🎁</div>
+                        <p>"Besides the 'bang', what other two items did Tom Smith add to his crackers?"</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>He added a paper hat and a bad joke.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%); color: #fff;">
+                        <div class="emoji-decor">🎅</div>
+                        <p>Term: Folklore</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Definition: Traditional stories and legends.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🎅</div>
+                        <p>Term: Abbreviation</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Definition: A shortened form of a word.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>Term: Chimney</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Definition: A pipe on the roof that lets smoke escape from a fire.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #333;">
+                        <div class="emoji-decor">🎁</div>
+                        <p>Term: Widow</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Definition: A woman whose husband has died.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); color: #333;">
+                        <div class="emoji-decor">🦌</div>
+                        <p>Term: Civil Servant</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>Definition: A person who works for the government.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); color: #333;">
+                        <div class="emoji-decor">🌟</div>
+                        <p>Term: Organ</p>
+                    </div>
+                    <div class="card-back">
+                        <div class="emoji-decor">✨</div>
+                        <p>"Definition: A large musical instrument with keys and pipes, often found in churches."</p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="">
+</div>
+
+<script>
+    // --- Step Navigation Logic ---
+    function showStep(stepId) {
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.getElementById(stepId).classList.add('active');
+        
+        // Refresh slider layout if entering reading step
+        if(stepId === 'step-reading') {
+            updateSlider();
+        }
+    }
+
+    // --- Lightbox Logic ---
+    function openLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const coverImg = document.querySelector('.cover-image');
+        
+        lightboxImg.src = coverImg.src;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // --- Slider Logic ---
+    let currentSlide = 0;
+    const track = document.getElementById('track');
+    const activityBtn = document.getElementById('goToActivityBtn');
+    
+    // Initial check
+    checkActivityButton();
+
+    function moveSlide(direction) {
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        currentSlide += direction;
+        
+        if (currentSlide < 0) {
+            currentSlide = totalSlides - 1;
+        } else if (currentSlide >= totalSlides) {
+            currentSlide = 0;
+        }
+        
+        updateSlider();
+    }
+
+    function updateSlider() {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        checkActivityButton();
+    }
+    
+    function checkActivityButton() {
+        const slides = document.querySelectorAll('.slide');
+        // Only show button on the VERY LAST slide
+        if (currentSlide === slides.length - 1) {
+            activityBtn.style.display = 'inline-block';
+        } else {
+            activityBtn.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
